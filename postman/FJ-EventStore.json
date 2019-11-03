@@ -1,0 +1,177 @@
+{
+	"info": {
+		"_postman_id": "1fec8730-6d0f-4981-8b83-ec03f9afde86",
+		"name": "FJ-EventStore",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add Todo",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "9d2f5dcf-4161-47bf-9dfa-d12a1e1fa2bc",
+						"exec": [
+							"const moment = require('moment');",
+							"const uuid = require('uuid').v4;",
+							"",
+							"pm.globals.set(\"today\", moment().format());",
+							"",
+							"const todoId = uuid()",
+							"",
+							"pm.globals.set(\"todoId\", todoId);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"todoId\": \"{{todoId}}\",\n\t\"task\": \"Add Todo\",\n\t\"description\": \"Description\",\n\t\"date\": \"{{today}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/todo/add",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"todo",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Complete Todo",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "9d2f5dcf-4161-47bf-9dfa-d12a1e1fa2bc",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"todoId\": \"{{todoId}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/todo/complete",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"todo",
+						"complete"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Revert Todo Completion",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "9d2f5dcf-4161-47bf-9dfa-d12a1e1fa2bc",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"todoId\": \"{{todoId}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/todo/revert-completion",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"todo",
+						"revert-completion"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Todos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/todo/list",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"todo",
+						"list"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

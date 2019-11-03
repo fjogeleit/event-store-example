@@ -1,0 +1,1 @@
+export const EVENT_STORE = 'EVENT_LOG_EVENT_STORE';

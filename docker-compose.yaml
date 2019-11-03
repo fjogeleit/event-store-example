@@ -1,0 +1,11 @@
+version: '3.7'
+
+services:
+    postgres:
+        image: 'postgres:11.1-alpine'
+        ports: ['5434:5432']
+        environment:
+            - POSTGRES_DB=event-store
+            - POSTGRES_USER=user
+            - POSTGRES_PASSWORD=password
+            - TZ=Europe/Berlin
