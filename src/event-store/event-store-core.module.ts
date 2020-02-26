@@ -1,5 +1,6 @@
 import { DynamicModule, Global, Module, Provider } from '@nestjs/common';
-import { Configuration, createEventStore, EventMiddleWare } from 'fj-event-store';
+import { EventMiddleWare } from 'fj-event-store';
+import { createPostgresEventStore, PostgresConfiguration } from 'fj-event-store/postgres';
 import { EVENT_STORE } from './constants';
 import { CqrsModule } from '@nestjs/cqrs';
 
@@ -8,14 +9,14 @@ import { CqrsModule } from '@nestjs/cqrs';
   imports: [CqrsModule],
 })
 export class EventStoreCoreModule {
-  static forRootAsync(options: Configuration, middleWareProvider: Provider<Promise<EventMiddleWare[]>>): DynamicModule {
+  static forRootAsync(options: PostgresConfiguration, middleWareProvider: Provider<Promise<EventMiddleWare[]>>): DynamicModule {
 
     const eventStoreProvider = {
       provide: EVENT_STORE,
-      useFactory: async (middleware) => {
+      useFactory: async (middleware: EventMiddleWare[]) => {
         options.middleware = [...(options.middleware || []), ...middleware];
 
-        const eventStore = createEventStore(options);
+        const eventStore = createPostgresEventStore(options);
         await eventStore.install();
 
         try {

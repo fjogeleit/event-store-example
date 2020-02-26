@@ -2,7 +2,7 @@
 
 ## Description
 
-A Basic example for the [FJ-EventStore](https://github.com/fjogeleit/event-store) integrated in the Framework [Nest](https://github.com/nestjs/nest)
+A Basic example for the [FJ-EventStore](https://github.com/fjogeleit/event-store) integrated in the Framework [NestJS](https://github.com/nestjs/nest)
 
 ## Requirements
 - NodeJS >= 12
