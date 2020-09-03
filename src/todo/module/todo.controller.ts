@@ -1,4 +1,4 @@
-import { Body, Controller, Get, HttpException, HttpStatus, Param, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { TodoRepository } from '../model/todo-repository';
 import { TodoBody, TodoService } from './todo.service';
 
